@@ -1,0 +1,14 @@
+\section{Chi-squared fits with systematics.}
+
+The file data.txt contains 100 pairs of $x, y$ values you wish to fit to a straight line. The nominal uncertainty in the $y$ measurements is 0.5, while the $x$ values are known perfectly. However, there are clearly outliers in the data.
+
+\begin{enumerate}[label=\textbf{\Alph*}.]
+    \item Fit the data to a straight line using the ``Tukey's biweight'' version of an M-estimator, and report the slope and intercept that you get.
+    
+    See the code for implementation details, we get $m=0.50073, b=4.80973$.
+
+    \item Using those best-fit values, calculate the residuals between the data and the fit. Then use these residuals in the bootstrap method to obtain uncertainty estimates for the fit you did in Part A. For the bootstrap assume that the residuals are independent of $x$.
+
+    Again, see code for details. $\sigma_m=0.00268, \sigma_b=0.15696$.
+
+\end{enumerate}

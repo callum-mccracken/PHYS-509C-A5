@@ -1,0 +1,54 @@
+\section{t Distribution}
+
+If a light object with mass $m$ is placed on a scale with ``fat tails'', the reading on the scale follows a Student's $t$-distribution with 3 degrees of freedom centered at $m$ with a standard deviation of \SI{1}{mg}.
+
+\begin{enumerate}[label=\textbf{\Alph*}.]
+    \item Write down the likelihood function for obtaining a reading of $x$ milligrams on this scale.
+
+    We know the standard $t$-distribution has mean 0 and variance $\frac{N}{N-2}$.
+
+    \begin{align*}
+        f(t|N) &= \frac{\Gamma\left(\frac{N+1}{2}\right)}{\sqrt{N\pi}\Gamma\left(\frac{N}{2}\right)}\left(\frac{1}{1 + \frac{t^2}{N}}\right)^{\frac{N+1}{2}} \\
+    \end{align*}
+
+    So if we have $N=3$,
+    \begin{align*}
+        f(t|3) &= \frac{2}{\sqrt{3}\pi}\frac{1}{\left(1 + \frac{t^2}{3}\right)^{2}} \\
+    \end{align*}
+
+    And then if we want a mean of $m$ and a variance of $1$, we must translate / scale: re-label $x = s(t-m)$ where $s = \sqrt{\frac{N}{N-2}} = \sqrt{3}$.
+    \begin{align*}
+        P(x) &= sf(s(x-m)) \\
+        &= \sqrt{3}\frac{2}{\sqrt{3}\pi}\frac{1}{\left(1 + \frac{(\sqrt{3}(x-m))^2}{3}\right)^{2}} \\
+        &= \frac{2}{\pi}\frac{1}{\left(1 + (x-m)^2\right)^{2}} \\
+    \end{align*}
+    (in the first line the factor of $s$ out front comes from normalization)
+
+    \item You use this scale to measure an object and obtain a reading of \SI{0.5}{mg}. Assuming a flat prior on $m$, calculate a Bayesian 90\% upper limit on the object's mass.
+
+    First, calculate the posterior:
+
+    Likelihood: $P(x|m)$ (t-distribution from earlier)
+
+    Prior: $P(m) = A$ for $m \ge 0$ (some constant, flat prior), else 0 (physically, mass can't be negative).
+
+    For $m<0$, the prior means $P(m|x=0.5)=0$. Otherwise,
+    \begin{align*}
+        P(m|x=0.5) &= \frac{P(x=0.5|m)P(m)}{\int P(x=0.5|m) P(m) dm} \\
+        &= \frac{P(x=0.5|m)A}{\int P(x=0.5|m) A dm} \\
+        &= \frac{P(x=0.5|m)}{\int P(x=0.5|m) dm} \\
+    \end{align*}
+
+    We want to find the $a$ such that
+    \begin{align*}
+        0.9 &= \int_{0}^a P(m|x=0.5)dm \\
+        &= \int_{0}^a \frac{2}{\pi}\frac{1}{\left(1 + (0.5-m)^2\right)^{2}} dm\\
+    \end{align*}
+
+    That's going to get messy analytically, see the code for details but numerically we find $a = 1.592$.
+
+    \item Now calculate the Feldman-Cousins 90\% confidence interval on $m$ for a reading of \SI{0.5}{mg}.
+
+    This one was done exclusively through code, and we get $a = 1.843$.
+
+\end{enumerate}
