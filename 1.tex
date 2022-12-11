@@ -22,7 +22,7 @@ If a light object with mass $m$ is placed on a scale with ``fat tails'', the rea
         &= \sqrt{3}\frac{2}{\sqrt{3}\pi}\frac{1}{\left(1 + \frac{(\sqrt{3}(x-m))^2}{3}\right)^{2}} \\
         &= \frac{2}{\pi}\frac{1}{\left(1 + (x-m)^2\right)^{2}} \\
     \end{align*}
-    (in the first line the factor of $s$ out front comes from normalization)
+    (in the first line, the factor of $s$ out front comes from normalization)
 
     \item You use this scale to measure an object and obtain a reading of \SI{0.5}{mg}. Assuming a flat prior on $m$, calculate a Bayesian 90\% upper limit on the object's mass.
 
@@ -42,7 +42,6 @@ If a light object with mass $m$ is placed on a scale with ``fat tails'', the rea
     We want to find the $a$ such that
     \begin{align*}
         0.9 &= \int_{0}^a P(m|x=0.5)dm \\
-        &= \int_{0}^a \frac{2}{\pi}\frac{1}{\left(1 + (0.5-m)^2\right)^{2}} dm\\
     \end{align*}
 
     That's going to get messy analytically, see the code for details but numerically we find $a = 1.592$.

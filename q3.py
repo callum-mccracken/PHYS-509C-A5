@@ -2,6 +2,7 @@
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+matplotlib.rcParams["figure.figsize"] = (20,10)
 matplotlib.rcParams['mathtext.fontset'] = 'stix'
 matplotlib.rcParams['font.family'] = 'STIXGeneral'
 
@@ -21,9 +22,9 @@ matplotlib.rcParams['font.family'] = 'STIXGeneral'
 # Use these training sets to define a delta(chi2) statistic
 # analogous to what is shown on the slide referred to above.
 
-# We'll need means and covariance matrices.
+# First, we'll need means and covariance matrices.
 
-# first load the training datasets
+# load the training datasets
 train_x_A, train_y_A = np.loadtxt("trainingset_a.txt").T
 train_x_B, train_y_B = np.loadtxt("trainingset_b.txt").T
 
@@ -55,11 +56,11 @@ def delta_chi2(x, y):
     Uses the definition from the slides:
     delta(chi2) = (x-mu_A)^T V_A^-1 (x-mu_A) - (x-mu_B)^T V_B^-1 (x-mu_B)
     """
-    vec_A = np.array([x, y]) - np.array([mu_x_train_A, mu_y_train_A])
-    vec_B = np.array([x, y]) - np.array([mu_x_train_B, mu_y_train_B])
-    part_A = np.dot(vec_A, np.matmul(V_A_inv, vec_A))
-    part_B = np.dot(vec_B, np.matmul(V_B_inv, vec_B))
-    return part_A - part_B
+    vec_a = np.array([x, y]) - np.array([mu_x_train_A, mu_y_train_A])
+    vec_b = np.array([x, y]) - np.array([mu_x_train_B, mu_y_train_B])
+    part_b = np.dot(vec_a, np.matmul(V_A_inv, vec_a))
+    part_b = np.dot(vec_b, np.matmul(V_B_inv, vec_b))
+    return part_b - part_b
 
 # You are also given two testing sets of type A and type B events.
 # Apply your delta(chi2) statistic to each testing set

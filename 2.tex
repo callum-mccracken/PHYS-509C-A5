@@ -5,10 +5,10 @@ The file data.txt contains 100 pairs of $x, y$ values you wish to fit to a strai
 \begin{enumerate}[label=\textbf{\Alph*}.]
     \item Fit the data to a straight line using the ``Tukey's biweight'' version of an M-estimator, and report the slope and intercept that you get.
     
-    See the code for implementation details, we get $m=0.50073, b=4.80973$.
+    See the code for implementation, we get: slope=0.50073, intercept=4.80973.
 
     \item Using those best-fit values, calculate the residuals between the data and the fit. Then use these residuals in the bootstrap method to obtain uncertainty estimates for the fit you did in Part A. For the bootstrap assume that the residuals are independent of $x$.
 
-    Again, see code for details. $\sigma_m=0.00268, \sigma_b=0.15696$.
+    Again, see code for details. $\sigma_{\text{slope}}=0.00268, \sigma_{\text{intercept}}=0.15696$.
 
 \end{enumerate}
